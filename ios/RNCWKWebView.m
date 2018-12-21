@@ -576,4 +576,14 @@ static NSString *const MessageHanderName = @"ReactNative";
   _bounces = bounces;
   _webView.scrollView.bounces = bounces;
 }
+
+- (WKWebView *)webView:(WKWebView *)webView createWebViewWithConfiguration:(WKWebViewConfiguration *)configuration forNavigationAction:(WKNavigationAction *)navigationAction windowFeatures:(WKWindowFeatures *)windowFeatures
+{
+  if (!navigationAction.targetFrame.isMainFrame) {
+      
+    [webView loadRequest:navigationAction.request];
+  }
+    
+  return nil;
+}
 @end
